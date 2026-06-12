@@ -465,7 +465,17 @@
   // Load and render featured listings
   let renderCards;
   async function init() {
-    await loadListings();
+    try {
+      const { loadListingsFromFirestore } = await import('./js/firebase-services.js');
+      const fetched = await loadListingsFromFirestore();
+      if (fetched && fetched.length > 0) {
+        allListings = fetched;
+      } else {
+        await loadListings();
+      }
+    } catch (e) {
+      await loadListings();
+    }
     renderCards = function() {
       const featured = allListings.filter(p => p.featured).slice(0, 6);
       document.getElementById('featuredGrid').innerHTML =

@@ -342,7 +342,14 @@
     try {
       // Try Firestore first; falls back to JSON if Firebase not configured
       const { loadListingsFromFirestore } = await import('../js/firebase-services.js');
-      await loadListingsFromFirestore();
+      const fetched = await loadListingsFromFirestore();
+      // ← CRITICAL: assign to the global allListings in core.js scope
+      if (fetched && fetched.length > 0) {
+        allListings = fetched;
+      } else {
+        // Firestore returned empty (not configured yet) — use sample JSON
+        await loadListings();
+      }
     } catch (e) {
       // Firebase not set up yet — use local JSON
       await loadListings();

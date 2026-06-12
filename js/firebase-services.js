@@ -34,6 +34,9 @@ const PENDING_COL  = "pending";    // awaiting admin review
 //  Replaces the static JSON fetch in core.js
 // ─────────────────────────────────────────────
 async function loadListingsFromFirestore() {
+  // Strategy: try with orderBy first (needs composite index).
+  // If Firestore throws an index error, fall back to a simple query without orderBy
+  // and sort client-side — this works even before the index is created.
   try {
     const q = query(
       collection(db, LISTINGS_COL),
@@ -41,16 +44,33 @@ async function loadListingsFromFirestore() {
       orderBy("postedAt", "desc")
     );
     const snap = await getDocs(q);
-    const listings = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    allListings = listings;
-    return listings;
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   } catch (err) {
-    console.error("Firestore read error:", err);
-    if (err.message && err.message.includes("index")) {
-      console.warn("👉 Firestore needs a composite index. Open the link in this error message to create it automatically (one click).");
+    if (err.code === "failed-precondition" || (err.message && err.message.includes("index"))) {
+      // Composite index not yet created — fetch without orderBy and sort client-side
+      console.warn("Firestore index missing — fetching without orderBy, sorting client-side.");
+      console.warn("Create the index by visiting the link in the error above (one click).");
+      try {
+        const q2 = query(
+          collection(db, LISTINGS_COL),
+          where("status", "==", "approved")
+        );
+        const snap2 = await getDocs(q2);
+        const listings = snap2.docs.map(d => ({ id: d.id, ...d.data() }));
+        // Sort by postedAt descending client-side
+        listings.sort((a, b) => {
+          const ta = a.postedAt?.seconds || 0;
+          const tb = b.postedAt?.seconds || 0;
+          return tb - ta;
+        });
+        return listings;
+      } catch (err2) {
+        console.error("Firestore fallback query also failed:", err2);
+        return [];
+      }
     }
-    // Fallback to JSON if Firestore fails
-    return loadListings();
+    console.error("Firestore read error:", err);
+    return [];
   }
 }
 
