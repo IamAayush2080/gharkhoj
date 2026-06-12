@@ -1,27 +1,19 @@
-// firestore.rules
-// Deploy with: firebase deploy --only firestore:rules
-
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── Live listings: anyone can read, only admin panel can write
-    // (admin panel is password-gated; for production use Firebase Auth instead)
-    match /listings/{listingId} {
-      allow read: if true;
-      allow write: if true;  // Admin panel is password-protected via admin.html
-    }
-
-    // ── Pending listings: anyone can create (submit form),
-    //    only admin can read/delete (enforced by password in admin.html)
-    //    For production, replace password gate with Firebase Auth
-    match /pending/{listingId} {
-      allow create: if
-        request.resource.data.title is string &&
-        request.resource.data.title.size() > 3 &&
-        request.resource.data.contact is string &&
-        request.resource.data.status == "pending";
-      allow read, delete: if true;  // Password-gated via admin.html (no Firebase Auth yet)
+    // This rule allows anyone with your Firestore database reference to view, edit,
+    // and delete all data in your Firestore database. It is useful for getting
+    // started, but it is configured to expire after 30 days because it
+    // leaves your app open to attackers. At that time, all client
+    // requests to your Firestore database will be denied.
+    //
+    // Make sure to write security rules for your app before that time, or else
+    // all client requests to your Firestore database will be denied until you Update
+    // your rules
+    match /{document=**} {
+      allow read, write: if request.time < timestamp.date(2026, 7, 12);
     }
   }
 }
