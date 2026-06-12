@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — GharKhoj.com.np</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏠</text></svg>">
+  <style>
+    .contact-hero {
+      background: linear-gradient(135deg, #0f2557, #1A56DB);
+      padding: 52px 0;
+      color: white;
+      text-align: center;
+    }
+    .contact-hero h1 { color: white; margin-bottom: 8px; }
+    .contact-hero p  { color: rgba(255,255,255,0.8); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .contact-form-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .contact-form-card h3 { margin-bottom: 20px; }
+
+    .contact-info-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-info-item {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .contact-info-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: var(--blue-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-info-item h4 { margin-bottom: 4px; font-size: 15px; }
+    .contact-info-item p  { font-size: 14px; }
+    .contact-info-item a  { color: var(--blue); font-size: 14px; }
+    .contact-info-item a:hover { text-decoration: underline; }
+
+    .success-msg {
+      display: none;
+      background: var(--green-light);
+      border: 1.5px solid #bbf7d0;
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      color: #14532d;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar-root"></div>
+
+<div class="contact-hero">
+  <div class="container">
+    <h1>Get in Touch</h1>
+    <p>Have a question, feedback, or need help? We're here for you.</p>
+  </div>
+</div>
+
+<div class="container section">
+  <div class="contact-layout">
+
+    <!-- Contact Form -->
+    <div class="contact-form-card">
+      <h3>📬 Send us a message</h3>
+      <div class="success-msg" id="successMsg">✅ Message sent! We'll get back to you within 24 hours.</div>
+      <div style="display:flex;flex-direction:column;gap:14px" id="contactForm">
+        <div class="form-group">
+          <label class="form-label">Your Name *</label>
+          <input type="text" id="c-name" class="form-input" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" id="c-email" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone (optional)</label>
+          <input type="tel" id="c-phone" class="form-input" placeholder="+977-98XXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject *</label>
+          <select id="c-subject" class="form-select">
+            <option value="">Select a topic</option>
+            <option>Report a fake listing</option>
+            <option>Problem with my listing</option>
+            <option>Partnership / Agent inquiry</option>
+            <option>Advertise with GharKhoj</option>
+            <option>Technical issue</option>
+            <option>General feedback</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message *</label>
+          <textarea id="c-msg" class="form-textarea" rows="5" placeholder="Tell us how we can help..."></textarea>
+        </div>
+        <div class="alert alert-warning" id="c-error" style="display:none">
+          <span>⚠️</span><span id="c-error-msg">Please fill all required fields.</span>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" onclick="sendMessage()">Send Message</button>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info-card">
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📧</div>
+        <div>
+          <h4>Email Us</h4>
+          <p>For general enquiries and support</p>
+          <a href="mailto:info@gharkhoj.com.np">info@gharkhoj.com.np</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">💬</div>
+        <div>
+          <h4>WhatsApp</h4>
+          <p>Fastest response — Mon to Sat, 9am–6pm NPT</p>
+          <a href="https://wa.me/9779800000000" target="_blank">+977-98-0000-0000</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📍</div>
+        <div>
+          <h4>Based in Nepal</h4>
+          <p>Serving Kathmandu, Pokhara, Chitwan, and all major cities across Nepal.</p>
+        </div>
+      </div>
+      <div class="contact-info-item" style="background:var(--blue-light);border-color:#bfdbfe">
+        <div class="contact-info-icon" style="background:white">🚨</div>
+        <div>
+          <h4 style="color:var(--blue)">Report a Scam or Fake Listing</h4>
+          <p style="color:var(--blue-dark)">Found a suspicious listing? Please report it immediately. We take fraud very seriously.</p>
+          <a href="mailto:report@gharkhoj.com.np" style="color:var(--blue-dark);font-weight:600">report@gharkhoj.com.np</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">🤝</div>
+        <div>
+          <h4>Partner with Us</h4>
+          <p>Real estate agent? Agency? Let's talk about how GharKhoj can grow your business.</p>
+          <a href="mailto:partner@gharkhoj.com.np">partner@gharkhoj.com.np</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="../js/core.js"></script>
+<script>
+  document.getElementById('navbar-root').innerHTML = buildNavbar('nav_contact');
+  document.getElementById('footer-root').innerHTML = buildFooter();
+  setLang(currentLang);
+
+  async function sendMessage() {
+    const req = { 'c-name': 'Name', 'c-email': 'Email', 'c-subject': 'Subject', 'c-msg': 'Message' };
+    for (const [id, label] of Object.entries(req)) {
+      if (!document.getElementById(id).value.trim()) {
+        document.getElementById('c-error-msg').textContent = `"${label}" is required.`;
+        document.getElementById('c-error').style.display = 'flex';
+        document.getElementById(id).focus();
+        return;
+      }
+    }
+    document.getElementById('c-error').style.display = 'none';
+
+    const btn = document.querySelector('#contactForm .btn-primary');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // ── Real email via Formspree (free, no backend needed) ──────────
+    // 1. Go to https://formspree.io  → New Form → get your endpoint
+    // 2. Replace YOUR_FORMSPREE_ID below with your actual form ID
+    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // e.g. 'xpwzgkla'
+
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+      // ── Dev mode: skip real send, just show success UI ──
+      setTimeout(() => {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      }, 600);
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:    document.getElementById('c-name').value.trim(),
+          email:   document.getElementById('c-email').value.trim(),
+          phone:   document.getElementById('c-phone').value.trim(),
+          subject: document.getElementById('c-subject').value,
+          message: document.getElementById('c-msg').value.trim(),
+          _subject: `GharKhoj Contact: ${document.getElementById('c-subject').value}`,
+        }),
+      });
+      if (res.ok) {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } else {
+        throw new Error('Formspree error');
+      }
+    } catch (err) {
+      document.getElementById('c-error-msg').textContent = 'Could not send message. Please email us directly at info@gharkhoj.com.np';
+      document.getElementById('c-error').style.display = 'flex';
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
