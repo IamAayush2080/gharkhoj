@@ -1,0 +1,26 @@
+// firestore.rules
+// Deploy with: firebase deploy --only firestore:rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Live listings: anyone can read, no one can write from client
+    match /listings/{listingId} {
+      allow read: if true;
+      allow write: if false;  // Only writable via Admin SDK or admin panel
+    }
+
+    // ── Pending listings: anyone can create (submit form),
+    //    only admin can read/delete (enforced by password in admin.html)
+    //    For production, replace password gate with Firebase Auth
+    match /pending/{listingId} {
+      allow create: if
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 3 &&
+        request.resource.data.contact is string &&
+        request.resource.data.status == "pending";
+      allow read, delete: if false; // Handled by admin panel (no auth yet)
+    }
+  }
+}
