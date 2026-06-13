@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saved Properties — GharKhoj.com.np</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏠</text></svg>">
+  <style>
+    .saved-hero {
+      background: linear-gradient(135deg, #0f2557, #1A56DB);
+      padding: 40px 0 32px;
+      color: white;
+      text-align: center;
+    }
+    .saved-hero h1 { color: white; margin-bottom: 8px; }
+    .saved-hero p  { color: rgba(255,255,255,0.8); margin: 0; }
+  </style>
+</head>
+<body>
+<div id="navbar-root"></div>
+
+<div class="saved-hero">
+  <div class="container">
+    <h1>❤️ Saved Properties</h1>
+    <p>Properties you've saved for later</p>
+  </div>
+</div>
+
+<div class="container section">
+  <div id="savedGrid" class="grid-3">
+    <div class="empty-state" style="grid-column:1/-1">
+      <div class="empty-icon">⏳</div>
+      <h3>Loading saved properties…</h3>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="../js/core.js"></script>
+<script>
+  document.getElementById('navbar-root').innerHTML = buildNavbar('');
+  document.getElementById('footer-root').innerHTML = buildFooter();
+
+  async function init() {
+    await loadListings();
+    const wishlist = JSON.parse(localStorage.getItem('gk_wishlist') || '[]');
+    const saved = allListings.filter(p => wishlist.includes(String(p.id)));
+    const grid = document.getElementById('savedGrid');
+
+    if (saved.length === 0) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+        <div class="empty-icon">🤍</div>
+        <h3>No saved properties yet</h3>
+        <p style="color:var(--muted)">Browse listings and tap the 🤍 heart button to save properties here.</p>
+        <a href="listings.html" class="btn btn-primary">Browse Properties</a>
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML = saved.map(p => {
+      const card = propertyCardHTML(p);
+      return card;
+    }).join('');
+
+    // Add remove buttons
+    saved.forEach(p => {
+      const link = grid.querySelector(`a[href*="id=${p.id}"]`);
+      if (!link) return;
+      const imgWrap = link.querySelector('.property-card__img');
+      if (!imgWrap) return;
+      imgWrap.style.position = 'relative';
+      const btn = document.createElement('button');
+      btn.innerHTML = '❤️';
+      btn.title = 'Remove from saved';
+      btn.style.cssText = 'position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:white;border:none;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.15);z-index:2;display:flex;align-items:center;justify-content:center';
+      btn.onclick = (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const wl = JSON.parse(localStorage.getItem('gk_wishlist') || '[]');
+        const i = wl.indexOf(String(p.id));
+        if (i !== -1) wl.splice(i, 1);
+        localStorage.setItem('gk_wishlist', JSON.stringify(wl));
+        link.closest('.property-card, a')?.remove() || link.remove();
+        if (!grid.querySelector('a[href*="property"]')) init();
+      };
+      imgWrap.appendChild(btn);
+    });
+  }
+  init();
+  setLang(currentLang);
+</script>
+</body>
+</html>
