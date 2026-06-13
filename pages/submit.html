@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Post your property for free on GharKhoj — Nepal's trusted property search. Reach thousands of tenants and buyers. No broker fees, no commission.">
+  <meta name="keywords" content="post property nepal free, list property nepal, ghar bhadama dinu, property listing nepal free">
+  <link rel="canonical" href="https://gharkhoj.com.np/pages/submit.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GharKhoj.com.np">
+  <meta property="og:title" content="Post Free Property Listing — GharKhoj.com.np">
+  <meta property="og:description" content="List your property for free on Nepal's trusted property search. Reach thousands of verified tenants and buyers.">
+  <meta property="og:url" content="https://gharkhoj.com.np/pages/submit.html">
+  <meta property="og:image" content="https://gharkhoj.com.np/images/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://gharkhoj.com.np/images/og-image.svg">
+  <!-- Google Analytics -->
+  <!-- Google Analytics — replace G-XXXXXXXXXX with your real Measurement ID -->
+  <!-- Get yours free at: https://analytics.google.com → Admin → Create Property -->
+  <script>
+    const GA_ID = 'G-XXXXXXXXXX'; // ← Replace this
+    if (GA_ID !== 'G-XXXXXXXXXX') {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    }
+  </script>
+  <title>Post Free Listing — GharKhoj.com.np</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏠</text></svg>">
+  <style>
+    .submit-hero {
+      background: linear-gradient(135deg, #0f2557, #1A56DB);
+      padding: 44px 0;
+      color: white;
+      text-align: center;
+    }
+    .submit-hero h1 { color: white; margin-bottom: 8px; }
+    .submit-hero p  { color: rgba(255,255,255,0.8); font-size: 16px; }
+
+    .perks-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .submit-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .form-card h3 { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1.5px solid var(--border); }
+
+    .form-section { margin-bottom: 28px; }
+    .form-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .photo-upload {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .photo-upload:hover { border-color: var(--blue); background: var(--blue-light); }
+    .photo-upload input { display: none; }
+    .photo-upload .upload-icon { font-size: 36px; margin-bottom: 8px; }
+    .photo-upload p { font-size: 14px; color: var(--muted); }
+    .photo-upload strong { color: var(--blue); }
+    .preview-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .preview-thumb {
+      width: 80px; height: 64px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      position: sticky;
+      top: calc(var(--nav-h) + 16px);
+    }
+    .sidebar-card h4 { margin-bottom: 14px; }
+    .tip-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--slate-mid);
+    }
+    .tip-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* Success state */
+    .success-state {
+      text-align: center;
+      padding: 48px 20px;
+      display: none;
+    }
+    .success-state .success-icon { font-size: 60px; margin-bottom: 16px; }
+    .success-state h2 { margin-bottom: 10px; }
+
+    @media (max-width: 768px) {
+      .submit-layout { grid-template-columns: 1fr; }
+      .sidebar-card { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar-root"></div>
+
+<!-- Hero -->
+<div class="submit-hero">
+  <div class="container">
+    <h1>Post Your Property — 100% Free</h1>
+    <p>Reach thousands of verified tenants and buyers. No commission. No hidden fees.</p>
+    <div class="perks-row">
+      <div class="perk">✅ Free to post</div>
+      <div class="perk">📱 Mobile-first reach</div>
+      <div class="perk">💬 Direct WhatsApp enquiries</div>
+      <div class="perk">🇳🇵 Nepal-wide audience</div>
+    </div>
+  </div>
+</div>
+
+<div class="container section-sm">
+  <div class="submit-layout">
+
+    <!-- Form -->
+    <div>
+      <div class="form-card" id="formCard">
+        <h3>📝 Property Details</h3>
+
+        <!-- Success state -->
+        <div class="success-state" id="successState">
+          <div class="success-icon">🎉</div>
+          <h2>Listing Submitted!</h2>
+          <p style="color:var(--muted);font-size:16px;margin-bottom:24px">Thank you! Your listing is under review and will go live within 24 hours.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <a href="listings.html" class="btn btn-primary">Browse Properties</a>
+            <button class="btn btn-outline" onclick="resetForm()">Post Another</button>
+          </div>
+        </div>
+
+        <div id="formInner">
+          <!-- Property Info -->
+          <div class="form-section">
+            <div class="form-section-title">Property Information</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="form-group">
+                <label class="form-label">Listing Title *</label>
+                <input type="text" id="f-title" class="form-input" placeholder="e.g. 2BHK Flat for Rent in Baneshwor" maxlength="100">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Property Type *</label>
+                  <select id="f-type" class="form-select">
+                    <option value="">Select type</option>
+                    <option value="room">Room</option>
+                    <option value="flat">Flat / Apartment</option>
+                    <option value="house">House</option>
+                    <option value="land">Land / Plot</option>
+                    <option value="commercial">Commercial Space</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Purpose *</label>
+                  <select id="f-purpose" class="form-select">
+                    <option value="">Select purpose</option>
+                    <option value="rent">For Rent</option>
+                    <option value="buy">For Sale</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Price (NPR) *</label>
+                  <input type="number" id="f-price" class="form-input" placeholder="e.g. 15000">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Area</label>
+                  <input type="text" id="f-area" class="form-input" placeholder="e.g. 950 sq.ft or 4 Anna">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Bedrooms</label>
+                  <select id="f-beds" class="form-select">
+                    <option value="0">Studio / N/A</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                    <option value="3">3 Bedrooms</option>
+                    <option value="4">4+ Bedrooms</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Bathrooms</label>
+                  <select id="f-baths" class="form-select">
+                    <option value="0">N/A</option>
+                    <option value="1">1 Bathroom</option>
+                    <option value="2">2 Bathrooms</option>
+                    <option value="3">3+ Bathrooms</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="form-section">
+            <div class="form-section-title">Location</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">City *</label>
+                  <select id="f-city" class="form-select">
+                    <option value="">Select city</option>
+                    <option>Kathmandu</option>
+                    <option>Lalitpur</option>
+                    <option>Bhaktapur</option>
+                    <option>Pokhara</option>
+                    <option>Chitwan</option>
+                    <option>Butwal</option>
+                    <option>Biratnagar</option>
+                    <option>Birgunj</option>
+                    <option>Dharan</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Area / Locality *</label>
+                  <input type="text" id="f-location" class="form-input" placeholder="e.g. Baneshwor, Lakeside">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-section">
+            <div class="form-section-title">Description</div>
+            <div class="form-group">
+              <label class="form-label">Property Description *</label>
+              <textarea id="f-desc" class="form-textarea" rows="5" placeholder="Describe the property, nearby landmarks, what's included in the rent, parking, water supply, etc."></textarea>
+            </div>
+          </div>
+
+          <!-- Photos -->
+          <div class="form-section">
+            <div class="form-section-title">Photos (Recommended)</div>
+            <div class="alert alert-info" style="margin-bottom:14px">
+              <span>💡</span>
+              <span>
+                Upload your photos to a free image host like
+                <a href="https://imgbb.com" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600">imgbb.com</a>
+                or <a href="https://postimages.org" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600">postimages.org</a>,
+                then paste the direct image links below. Add up to 5 photos.
+              </span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px" id="imageUrlInputs">
+              <div class="form-group">
+                <label class="form-label">Photo 1 — Image URL</label>
+                <input type="url" class="form-input img-url-input" placeholder="https://i.ibb.co/xxxxx/photo1.jpg" oninput="previewImageUrl(this, 0)">
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="margin-top:10px" onclick="addImageUrlField()">+ Add another photo</button>
+            <div class="preview-grid" id="previewGrid"></div>
+          </div>
+
+          <!-- Contact -->
+          <div class="form-section">
+            <div class="form-section-title">Your Contact Details</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Your Name *</label>
+                  <input type="text" id="f-name" class="form-input" placeholder="Full name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone / WhatsApp *</label>
+                  <input type="tel" id="f-phone" class="form-input" placeholder="+977-98XXXXXXXX">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email (optional)</label>
+                <input type="email" id="f-email" class="form-input" placeholder="your@email.com">
+              </div>
+            </div>
+          </div>
+
+          <!-- Error message -->
+          <div class="alert alert-warning" id="formError" style="display:none;margin-bottom:16px">
+            <span>⚠️</span>
+            <span id="errorMsg">Please fill all required fields.</span>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="submitForm()">
+            🚀 Submit Free Listing
+          </button>
+
+          <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:12px">
+            By submitting, you agree to our <a href="terms.html" style="color:var(--blue)">Terms of Service</a> and <a href="privacy.html" style="color:var(--blue)">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div>
+      <div class="sidebar-card">
+        <h4>💡 Tips for a Great Listing</h4>
+        <div class="tip-item"><span class="tip-icon">📸</span><span>Add at least 3-5 clear photos — listings with photos get 5x more enquiries.</span></div>
+        <div class="tip-item"><span class="tip-icon">📍</span><span>Be specific about location — mention nearest landmark or chowk.</span></div>
+        <div class="tip-item"><span class="tip-icon">💰</span><span>Mention what's included in the price (water, electricity, parking).</span></div>
+        <div class="tip-item"><span class="tip-icon">📱</span><span>Use a WhatsApp number — most enquiries come via WhatsApp.</span></div>
+        <div class="tip-item"><span class="tip-icon">✅</span><span>Respond quickly to enquiries to close faster.</span></div>
+      </div>
+
+      <div class="sidebar-card" style="margin-top:16px;background:var(--blue-light);border-color:#bfdbfe">
+        <h4 style="color:var(--blue)">🆓 Always Free</h4>
+        <p style="font-size:14px;color:var(--blue-dark)">Posting a listing on GharKhoj is always free. No hidden fees, no commissions. We connect landlords and tenants directly.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="../js/core.js"></script>
+<script>
+  document.getElementById('navbar-root').innerHTML = buildNavbar('nav_submit');
+  document.getElementById('footer-root').innerHTML = buildFooter();
+  setLang(currentLang);
+
+  // ── Image URL fields ──────────────────────────
+  let imgFieldCount = 1;
+
+  function addImageUrlField() {
+    if (imgFieldCount >= 5) return;
+    imgFieldCount++;
+    const wrap = document.getElementById('imageUrlInputs');
+    const div = document.createElement('div');
+    div.className = 'form-group';
+    div.innerHTML = `
+      <label class="form-label">Photo ${imgFieldCount} — Image URL</label>
+      <input type="url" class="form-input img-url-input" placeholder="https://i.ibb.co/xxxxx/photo.jpg" oninput="previewImageUrl(this, ${imgFieldCount - 1})">`;
+    wrap.appendChild(div);
+    if (imgFieldCount >= 5) {
+      document.querySelector('[onclick="addImageUrlField()"]').style.display = 'none';
+    }
+  }
+
+  function previewImageUrl(input, idx) {
+    const grid = document.getElementById('previewGrid');
+    let img = document.getElementById('preview-' + idx);
+    const url = input.value.trim();
+
+    if (!url) {
+      if (img) img.remove();
+      return;
+    }
+    if (!img) {
+      img = document.createElement('img');
+      img.id = 'preview-' + idx;
+      img.className = 'preview-thumb';
+      img.onerror = () => { img.style.border = '2px solid var(--red)'; img.alt = 'Invalid image URL'; };
+      img.onload  = () => { img.style.border = '1.5px solid var(--border)'; };
+      grid.appendChild(img);
+    }
+    img.src = url;
+  }
+
+  function getImageUrls() {
+    return Array.from(document.querySelectorAll('.img-url-input'))
+      .map(i => i.value.trim())
+      .filter(Boolean);
+  }
+
+  // ── Firebase submit ──────────────────────────
+  let firebaseReady = false;
+  let submitListingFn = null;
+
+  // Dynamically load Firebase only when needed
+  async function loadFirebase() {
+    if (firebaseReady) return;
+    const { submitListing } = await import('../js/firebase-services.js');
+    submitListingFn = submitListing;
+    firebaseReady = true;
+  }
+
+  async function submitForm() {
+    const required = {
+      'f-title': 'Listing title',
+      'f-type': 'Property type',
+      'f-purpose': 'Purpose',
+      'f-price': 'Price',
+      'f-city': 'City',
+      'f-location': 'Area / Locality',
+      'f-desc': 'Description',
+      'f-name': 'Your name',
+      'f-phone': 'Phone number',
+    };
+    const error    = document.getElementById('formError');
+    const errorMsg = document.getElementById('errorMsg');
+
+    // Validate
+    for (const [id, label] of Object.entries(required)) {
+      const val = document.getElementById(id).value.trim();
+      if (!val) {
+        errorMsg.textContent = `"${label}" is required.`;
+        error.style.display = 'flex';
+        document.getElementById(id).focus();
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
+    error.style.display = 'none';
+
+    // Collect form data
+    const formData = {
+      title:       document.getElementById('f-title').value.trim(),
+      type:        document.getElementById('f-type').value,
+      purpose:     document.getElementById('f-purpose').value,
+      price:       document.getElementById('f-price').value,
+      area:        document.getElementById('f-area').value.trim(),
+      beds:        document.getElementById('f-beds').value,
+      baths:       document.getElementById('f-baths').value,
+      city:        document.getElementById('f-city').value,
+      location:    document.getElementById('f-location').value.trim(),
+      description: document.getElementById('f-desc').value.trim(),
+      name:        document.getElementById('f-name').value.trim(),
+      phone:       document.getElementById('f-phone').value.trim(),
+      email:       document.getElementById('f-email').value.trim(),
+      images:      getImageUrls(),
+    };
+
+    // Show loading state
+    const btn = document.querySelector('[onclick="submitForm()"]');
+    btn.disabled = true;
+    btn.textContent = '⏳ Submitting...';
+
+    try {
+      await loadFirebase();
+      await submitListingFn(formData);
+
+      // Success
+      document.getElementById('formInner').style.display = 'none';
+      document.getElementById('successState').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error('Submit error:', err);
+      errorMsg.textContent = 'Something went wrong. Please try again or contact us.';
+      error.style.display = 'flex';
+      btn.disabled = false;
+      btn.textContent = '🚀 Submit Free Listing';
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('formInner').style.display = 'block';
+    document.getElementById('successState').style.display = 'none';
+    document.querySelectorAll('#formInner input, #formInner select, #formInner textarea')
+      .forEach(el => el.value = '');
+    document.getElementById('previewGrid').innerHTML = '';
+    const btn = document.querySelector('[onclick="submitForm()"]');
+    if (btn) { btn.disabled = false; btn.textContent = '🚀 Submit Free Listing'; }
+  }
+</script>
+</body>
+</html>
