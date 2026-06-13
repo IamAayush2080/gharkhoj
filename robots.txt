@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Block admin panel from indexing
-Disallow: /pages/admin.html
-
-# Sitemap location
-Sitemap: https://gharkhoj.com.np/sitemap.xml
